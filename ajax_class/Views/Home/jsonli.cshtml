@@ -1,0 +1,69 @@
+﻿@section styles
+{
+    <style>
+        .div1 {
+            display: flex ;
+            flex-wrap: wrap ;
+            Flex-grow:2 ;
+            justify-content: Space-around;
+        }
+
+        #card123 img
+        {
+            height:180px;
+            border-radius: 20px
+        }
+    </style>
+}
+<ul id="num1">
+</ul>
+<div class="div1" id="div1">
+</div>
+@section Scripts
+{
+    <script src="~/js/travel.js"></script>
+    <script>
+        let result
+        const numid = document.getElementById('num1')
+        const emps = [{ "name": "Tom", "workYears": 3, "salary": 35000 },
+        { "name": "Jack", "workYears": 5, "salary": 40000 },
+        { "name": "Mary", "workYears": 7, "salary": 45000 }];
+        // emps.forEach(i=>
+        // {
+        //     numid.innerHTML = `<li> ${emps[i].name}/${emps[i].workYears}/${emps[i].salary} </li>`
+        // })
+        for (let i = 0; i < emps.length; i++) {
+            numid.innerHTML += `<li> ${emps[i].name}/${emps[i].workYears}/${emps[i].salary} </li>`
+        }
+        // numid.innerHTML += `<li> ${emps[0].name}/${emps[0].workYears}/${emps[0].salary} </li>`
+        // numid.innerHTML += `<li> ${emps[1].name}/${emps[1].workYears}/${emps[1].salary} </li>`
+        // numid.innerHTML += `<li> ${emps[2].name}/${emps[2].workYears}/${emps[2].salary} </li>`
+        const travel = spots.CommonFormat.Section[0]
+        const travel1 = spots.CommonFormat.Section
+        console.log(spots.CommonFormat.Section[0])
+        // const numid = document.querySelector("card")
+        // num1.innerHTML = `<p>${travel.xbody}</p>` + `<img src="${travel.file.img[0].text}"/>`
+        const card123 = document.getElementById('div1')
+        // card123.innerHTML=
+        // `
+        //                     <img src="${travel.file.img[0].text}" class="card-img-top" alt="${travel.CAT1}">
+        //     <div class="card-body">
+        //                    <h5 class="card-title">${travel.stitle}</h5>
+        //                        <p class="card-text">${travel.address}</p>
+        //     </div>
+        // `
+        for (let i = 0; i < travel1.length; i++) {
+            card123.innerHTML += `
+                                         <div class="card" style="width: 18rem;" id="card123">
+            
+            <img src="${travel1[i].file.img[0].text}" class="card-img-top" alt="${travel1[i].CAT1}">
+                            <div class="card-body">
+                            <h5 class="card-title">${travel1[i].stitle}</h5>
+                             <p class="card-text">${travel1[i].address}</p>
+                            </div>
+                                    </div>
+                        `
+        }
+
+    </script>
+}

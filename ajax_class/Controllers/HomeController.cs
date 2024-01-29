@@ -22,7 +22,10 @@ namespace ajax_class.Controllers
         {
             return View();
         }
-
+        public IActionResult jsonli()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
