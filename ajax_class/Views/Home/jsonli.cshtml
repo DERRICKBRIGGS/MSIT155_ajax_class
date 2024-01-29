@@ -53,10 +53,10 @@
         //     </div>
         // `
         for (let i = 0; i < travel1.length; i++) {
+            let img = travel1[i].file.img[0] ? travel1[i].file.img[0].text : travel1[i].file.img.text;
             card123.innerHTML += `
                                          <div class="card" style="width: 18rem;" id="card123">
-            
-            <img src="${travel1[i].file.img[0].text}" class="card-img-top" alt="${travel1[i].CAT1}">
+                                    <img src="${img}" class="card-img-top" alt="${travel1[i].CAT1}">
                             <div class="card-body">
                             <h5 class="card-title">${travel1[i].stitle}</h5>
                              <p class="card-text">${travel1[i].address}</p>
@@ -64,6 +64,7 @@
                                     </div>
                         `
         }
+        console.log(travel1.length)
 
     </script>
 }
