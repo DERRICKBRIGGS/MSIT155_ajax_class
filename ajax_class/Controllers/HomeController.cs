@@ -26,6 +26,18 @@ namespace ajax_class.Controllers
         {
             return View();
         }
+        public IActionResult resultquery()
+        {
+            return View();
+        }
+        public IActionResult first()
+        {
+            return View();
+        }
+        public IActionResult returncontain()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
