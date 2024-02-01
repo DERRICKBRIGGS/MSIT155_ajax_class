@@ -38,6 +38,14 @@ namespace ajax_class.Controllers
         {
             return View();
         }
+        public IActionResult addressSelect()
+        {
+            return View();
+        }
+        public IActionResult addApiimage()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

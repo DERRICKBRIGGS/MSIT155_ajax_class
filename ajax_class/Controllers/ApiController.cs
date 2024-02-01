@@ -16,11 +16,24 @@ namespace ajax_class.Controllers
         {
             return View();
         }
+
+
         public IActionResult jsonAddress()
         {
             var result = _myDBContext.Addresses.Select(a => a.City).Distinct();
             return Json(result);
         }
+        public IActionResult jsonsiteID(string city)
+        {
+            var result = _myDBContext.Addresses.Where(a=>a.City== city).Select(a=>a.SiteId).Distinct();
+            return Json(result);
+        }
+        public IActionResult returnroad(string site_id)
+        {
+            var result = _myDBContext.Addresses.Where(a => a.SiteId == site_id).Select(a => a.Road).Distinct();
+            return Json(result);
+        }
+
         public IActionResult returncontent()
         {
             //int a = 10;
@@ -42,6 +55,9 @@ namespace ajax_class.Controllers
             }
             return NotFound();
         }
+
+
+
         public IActionResult resultquery(VMMember vMMember)
         {
             if (string.IsNullOrEmpty(vMMember.Name)) 
@@ -50,15 +66,22 @@ namespace ajax_class.Controllers
             }
             return Content($"你好{vMMember.Name}，已經{vMMember.age}那麼大了");
         }
+
+
+
         public IActionResult CheckAccount(VMMember vMMember)
         {
-            foreach (var Member in _myDBContext.Members) 
+            if (_myDBContext.Members.Any(a => a.Name == vMMember.Name)) 
             {
-                if (Member.Name == vMMember.Name) 
-                {
-                    return Content($" {vMMember.Name}已經存在了", "text/plain", Encoding.UTF8);
-                }
+                return Content($" {vMMember.Name}已經存在了", "text/plain", Encoding.UTF8);
             }
+            //foreach (var Member in _myDBContext.Members) 
+            //{
+            //    if (Member.Name == vMMember.Name) 
+            //    {
+            //        return Content($" {vMMember.Name}已經存在了", "text/plain", Encoding.UTF8);
+            //    }
+            //}
             if (vMMember.Name != null && vMMember.Email != null && vMMember.age != null) 
             {
                 return Content($" 你好{vMMember.Name}，{vMMember.age}歲了，電子信箱是{vMMember.Email}", "text/plain", Encoding.UTF8);

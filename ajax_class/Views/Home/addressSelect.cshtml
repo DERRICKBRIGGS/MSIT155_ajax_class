@@ -1,0 +1,61 @@
+﻿<h1>addressSelect</h1>
+<select id="select1">
+</select>
+<select id="select2">
+</select>
+<select id="select3">
+</select>
+@* https://localhost:7159/Home/addressSelect *@
+
+
+@section Scripts{
+    <script>
+        const select1 = document.querySelector('#select1');
+        const select2 = document.querySelector('#select2');
+        const select3 = document.querySelector('#select3');
+
+        (async () => {
+            const url = ' @Url.Content("~/api/jsonAddress")';
+            const response = await fetch(url);
+            const data = await response.json();
+            // console.log(data);
+            const result = data.map(city => {
+                return `<option value="${city}">${city}</option>`
+            })
+            select1.innerHTML = result.join("");
+            Select()
+        })();
+
+
+        const Select = async () => {
+            const city = select1.options[select1.selectedIndex].value; //找選到的值
+            const url = `@Url.Content("/api/jsonsiteID")?city=${city}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            // console.log(data)
+            const result = data.map(city => `<option value="${city}">${city}</option>`)
+            select2.innerHTML = result.join("")
+            road()
+        };
+
+
+        select1.addEventListener('change', Select)
+
+
+        const road = async () => {
+            const site_id = select2.options[select2.selectedIndex].value;
+            const url = `@Url.Content("/api/returnroad")?site_id=${site_id}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            const result = data.map(road => `<option value=${road}>${road}</option>`);
+            select3.innerHTML = result.join("");
+            console.log(site_id)
+        }
+       
+
+
+
+        select2.addEventListener('change', road)
+
+    </script>
+}
